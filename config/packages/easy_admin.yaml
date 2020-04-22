@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        Utilisateur:
+            class: App\Entity\Utilisateur
+            controller: App\Controller\UtilisateurController
+        Role:
+            class: App\Entity\Role
+        Achat:
+            class: App\Entity\Achat
+        PackJetons:
+            class: App\Entity\PackJetons
+        HistoriqueEncheres:
+            class: App\Entity\HistoriqueEncheres
+        Enchere:
+            class: App\Entity\Enchere
+        Produit:
+            class: App\Entity\Produit
