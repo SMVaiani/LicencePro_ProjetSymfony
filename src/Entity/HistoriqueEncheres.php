@@ -4,11 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HistoriqueEncheresRepository")
- * @UniqueEntity(fields={"enchere","utilisateur", "date_enchere", "prix"}, message="Enchere déjà pris")
  */
 class HistoriqueEncheres
 {
@@ -20,9 +18,9 @@ class HistoriqueEncheres
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
 	 * @Assert\NotBlank()
-	 * @Assert\Date()
+	 * @Assert\DateTime()
      */
     private $date_enchere;
 

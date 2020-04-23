@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PackJetons index{% endblock %}
+
+{% block body %}
+<body class="p-3 mb-2 bg-info text-white">
+<p><a href="{{path('index')}}">Accueil</a></p>
+<div style="width:80%; margin:auto" class="p-3 mb-2 bg-warning text-dark border border-success rounded-lg">
+    <h1>Boutique de jetons</h1>
+	<form action="{{ path('utilisateur_acheter') }}" method="POST">
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Nombre jetons</th>
+                <th>choix</th>
+            </tr>
+        </thead>
+        <tbody>
+		{% for pack_jeton in pack_jetons %}
+            <tr>
+                <td>{{ pack_jeton.id }}</td>
+                <td>{{ pack_jeton.description }}</td>
+                <td>{{ pack_jeton.prix }}</td>
+                <td>{{ pack_jeton.nbjetons }}</td>
+                <td>
+                    <input type="radio" name="choix_id_jetons" value="{{ pack_jeton.id }}" class="btn btn-outline-primary" onmouseover="this.style.color = '#FFFFFF';" onmouseout="this.style.color = '#007BFF'" />
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<input type="submit" value="ACHETER" class="btn btn-outline-primary" onmouseover="this.style.color = '#FFFFFF';" onmouseout="this.style.color = '#007BFF'" />
+	</form>
+	{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$(document).ready( function () {
+		$('#myTable').DataTable();
+		} );
+	</script>
+	{% endblock %}
+</div>
+</body>
+{% endblock %}

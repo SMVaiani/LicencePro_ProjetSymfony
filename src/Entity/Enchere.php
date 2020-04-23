@@ -20,16 +20,16 @@ class Enchere
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
 	 * @Assert\NotBlank()
-	 * @Assert\Date()
+	 * @Assert\DateTime()
      */
     private $date_debut;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
 	 * @Assert\NotBlank()
-	 * @Assert\Date()
+	 * @Assert\DateTime()
      */
     private $date_fin;
 

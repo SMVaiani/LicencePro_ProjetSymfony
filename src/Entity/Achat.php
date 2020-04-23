@@ -4,11 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AchatRepository")
- * @UniqueEntity(fields={"packjetons", "utilisateur", "date_achat"}, message="Pack Jetons déjà acheté")
+ * @ORM\Entity(repositoryClass="App\Repository\AchatRepository") 
  */
 class Achat
 {
@@ -21,8 +19,6 @@ class Achat
 
     /**
      * @ORM\Column(type="date")
-	 * @Assert\NotBlank()
-	 * @Assert\Date()
      */
     private $date_achat;
 
@@ -38,6 +34,11 @@ class Achat
      */
     private $packjetons;
 
+	public function __construct()
+	{
+		$this->date_achat = new \DateTime('now');
+	}
+	
     public function getId(): ?int
     {
         return $this->id;
@@ -78,4 +79,9 @@ class Achat
 
         return $this;
     }
+	
+	public function __toString()
+	{
+		return $this->getDateAchat()->format('d-m-Y');
+	}
 }

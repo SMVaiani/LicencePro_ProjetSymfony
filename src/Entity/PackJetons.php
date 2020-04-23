@@ -43,7 +43,7 @@ class PackJetons
         $this->achat = new ArrayCollection();
     }
 
-    public function getNbJetons(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -102,16 +102,21 @@ class PackJetons
 
         return $this;
     }
-	
-	/*public function __toString()
-	{
-		return $this->description;
-	}*/
 
+	public function getNbjetons(): ?int
+	{
+		return $this->nbjetons;
+	}
+	
     public function setNbjetons(int $nbjetons): self
     {
         $this->nbjetons = $nbjetons;
 
         return $this;
     }
+	
+	public function __toString()
+	{
+		return $this->description;
+	}
 }

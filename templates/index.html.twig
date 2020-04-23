@@ -12,10 +12,11 @@
 		<h1>Enchere VIP</h1>
 		<div>
 		{% if app.user %}
+			<a href="{{ path('pack_jetons_index') }}" class="btn btn-outline-warning"" role="button">ACHETER JETONS</a>
 			<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a>
 		{% else %}
 			<a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">SE CONNECTER</a>
-			<a href="{{ path('app_register') }}" class="btn btn-primary" role="button">S'INSCRIRE</a>
+			<a href="{{ path('app_register') }}" class="btn btn-success" role="button">S'INSCRIRE</a>
 		{% endif %}
 		</div>
 		{% endblock %}
