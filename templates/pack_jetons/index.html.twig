@@ -1,17 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PackJetons index{% endblock %}
+{% block title %}Enchere VIP : Acheter vos jetons{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/jeton.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
 
 {% block body %}
 <body class="p-3 mb-2 bg-info text-white">
-<p><a href="{{path('index')}}">Accueil</a></p>
-<div style="width:80%; margin:auto" class="p-3 mb-2 bg-warning text-dark border border-success rounded-lg">
-    <h1>Boutique de jetons</h1>
+<nav>
+  <a href="/" id="logojeton"><img src="../logo.png" title="Accueil" alt="Tahiti" id="jeton-logo"></a>
+  <a href="/" id="logojeton2"><img src="../logo.png" title="Accueil" alt="Tahiti" id="jeton-logo2"></a>
+</nav>
+<h1 class="p-3 mb-2 bg-dark text-white rounded-pill">Boutique de jeton</h1>
+<div id="tab-entier" class="p-3 mb-2 bg-warning text-dark border border-success rounded-lg">
+
 	<form action="{{ path('utilisateur_acheter') }}" method="POST">
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Nombre jetons</th>
@@ -21,9 +28,8 @@
         <tbody>
 		{% for pack_jeton in pack_jetons %}
             <tr>
-                <td>{{ pack_jeton.id }}</td>
                 <td>{{ pack_jeton.description }}</td>
-                <td>{{ pack_jeton.prix }}</td>
+                <td>{{ pack_jeton.prix }}€</td>
                 <td>{{ pack_jeton.nbjetons }}</td>
                 <td>
                     <input type="radio" name="choix_id_jetons" value="{{ pack_jeton.id }}" class="btn btn-outline-primary" onmouseover="this.style.color = '#FFFFFF';" onmouseout="this.style.color = '#007BFF'" />

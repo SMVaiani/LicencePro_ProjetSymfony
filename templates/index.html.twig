@@ -2,24 +2,39 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Enchere VIP : Vente privées{% endblock %}</title>
+        <title>{% block title %}Enchere VIP : Bienvenue{% endblock %}</title>
         {% block stylesheets %}
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+			<link href="css/index.css" rel="stylesheet">
 		{% endblock %}
     </head>
-    <body>
+    <body class="border-right border-left">
         {% block body %}
-		<h1>Enchere VIP</h1>
-		<div>
+		<nav class="navbar navbar-dark bg-dark">
+			<a href="/"><img src="logo.png" title="Accueil" alt="Tahiti" style="color:white; background:#707070;border-radius:50%;border:2px solid #404040;max-width:120px;max-height: 120px;"></a>
 		{% if app.user %}
-			<a href="{{ path('pack_jetons_index') }}" class="btn btn-outline-warning"" role="button">ACHETER JETONS</a>
+			<a href="{{ path('pack_jetons_index') }}" class="nav-link nav-item">ACHETER VOS JETONS</a>
 			<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a>
 		{% else %}
 			<a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">SE CONNECTER</a>
 			<a href="{{ path('app_register') }}" class="btn btn-success" role="button">S'INSCRIRE</a>
 		{% endif %}
+		</nav>
+		
+		<!-- le conteneur fenêtre -->
+		<div class="marquee-rtl">
+			<!-- le contenu défilant -->
+			<div>Enchères en cours</div>
 		</div>
-		{% endblock %}
+	<table id="tab-entier">
+        <tbody id="tab-corp">
+            <tr>
+                <td><img src="iphone.jpg" alt="iphone" id="img-enchere"></td>
+                <td><h4>Iphone 6</h4>Valeur: 800 € <input type="text" id="uname" name="name"><button>Placer une offre</button></td>
+            </tr>
+        </tbody>
+    </table>
+	{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

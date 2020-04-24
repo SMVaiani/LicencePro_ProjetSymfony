@@ -3,6 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+	<nav class="navbar navbar-dark bg-dark">
+		<a href="/"><img src="logo.png" title="Accueil" alt="Tahiti" style="color:white; background:#707070;border-radius:50%;border:2px solid #404040;max-width:120px;max-height: 120px;"></a>
+	</nav>
+	<div class="text-center" style="margin-left:30%; margin-right:30%">
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
@@ -12,4 +16,5 @@
 
         <button class="btn btn-primary">Register</button>
     {{ form_end(registrationForm) }}
+	</div>
 {% endblock %}
