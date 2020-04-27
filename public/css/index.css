@@ -11,6 +11,13 @@ body {
 	max-width:120px;
 	max-height: 120px;
 }
+#pseudo-name {
+	color: yellow;
+	opacity: 0.8;
+	margin-left: 40px;
+	font-family: 'Arial', 'Open Sans', 'Roboto', sans-serif;
+	font-weight: bold; 
+}
 
 .encheres {
 	margin-bottom: 25px;
@@ -34,8 +41,7 @@ button.btn-placer {
 	background-color: rgb(167,225,7);
 	font-family: 'Arial', 'Open Sans', 'Roboto', sans-serif;
 	color: white;
-	font-weight: bold;
-	font-family: 
+	font-weight: bold; 
 }
 
 button.btn-placer:hover {

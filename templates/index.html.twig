@@ -16,7 +16,7 @@
 			<a href="/"><img src="images/logo.png" title="Accueil" alt="Tahiti" id="img-logo"></a>
 		{% if app.user %}
 			<a href="{{ path('pack_jetons_index') }}" class="nav-link nav-item">ACHETER VOS JETONS</a>
-			<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a>
+			<span><a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a><br><span id="pseudo-name">{{ app.user.pseudo }}</span></span>
 		{% else %}
 			<a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">SE CONNECTER</a>
 			<a href="{{ path('app_register') }}" class="btn btn-success" role="button">S'INSCRIRE</a>
