@@ -36,6 +36,7 @@ class Achat
 
 	public function __construct()
 	{
+		date_default_timezone_set('Europe/Paris');
 		$this->date_achat = new \DateTime('now');
 	}
 	

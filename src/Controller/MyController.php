@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\EnchereRepository;
+use App\Entity\HistoriqueEncheres;
 
 class MyController extends AbstractController
 {
@@ -22,10 +23,22 @@ class MyController extends AbstractController
 	/**
 	  * @Route("/utilisateur/placer", name="utilisateur_placer", methods={"GET","POST"})
 	  */
-	public function placerOffre():Response
+	public function placerOffre(EnchereRepository $enchereRepository):Response
 	{
-		$historiqueEncheres = new HistoriqueEncheres();
+		if(isset($_POST['mise']) && isset($_POST['id_enchere']) && !empty($_POST['mise']))
+		{
+			$mise = $_POST['mise'];
+			$id_enchere = $_POST['id_enchere'];
+			$enchere = $enchereRepository->find($id_enchere);
+			$historiqueEncheres = new HistoriqueEncheres();
+			$historiqueEncheres->setEnchere($enchere);
+			$historiqueEncheres->setPrix($mise);
+			$this->getUser()->addHistoriqueEnchere($historiqueEncheres);
+			$entityManager = $this->getDoctrine()->getManager();
+			$entityManager->persist($historiqueEncheres);
+			$entityManager->flush();
+		}
 		
-		
+		return $this->redirectToRoute('index');
 	}
 }

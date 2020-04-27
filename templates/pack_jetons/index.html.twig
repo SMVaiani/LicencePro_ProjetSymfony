@@ -32,7 +32,7 @@
                 <td>{{ pack_jeton.prix }}€</td>
                 <td>{{ pack_jeton.nbjetons }}</td>
                 <td>
-                    <input type="radio" name="choix_id_jetons" value="{{ pack_jeton.id }}" class="btn btn-outline-primary" />
+                    <input type="radio" name="choix_id_jetons" value="{{ pack_jeton.id }}" class="btn btn-outline-primary">
                     
                 </td>
             </tr>
@@ -43,7 +43,7 @@
         {% endfor %}
         </tbody>
     </table>
-	<input type="submit" value="ACHETER" class="btn btn-outline-primary" />
+	<input type="submit" value="ACHETER" class="btn btn-outline-primary">
 	</form>
 	{% block javascripts %}
 	{{ parent() }}

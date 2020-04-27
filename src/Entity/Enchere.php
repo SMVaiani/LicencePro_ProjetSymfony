@@ -118,6 +118,6 @@ class Enchere
 	
 	public function __toString()
 	{
-		return "";
+		return $this->produit->getDescriptif();
 	}
 }
