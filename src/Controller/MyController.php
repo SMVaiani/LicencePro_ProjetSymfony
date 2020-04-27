@@ -25,7 +25,7 @@ class MyController extends AbstractController
 	  */
 	public function placerOffre(EnchereRepository $enchereRepository):Response
 	{
-		if(isset($_POST['mise']) && isset($_POST['id_enchere']) && !empty($_POST['mise']))
+		if(isset($_POST['mise']) && isset($_POST['id_enchere']) && !empty($_POST['mise']) && $this->getUser() != null)
 		{
 			$mise = $_POST['mise'];
 			$id_enchere = $_POST['id_enchere'];

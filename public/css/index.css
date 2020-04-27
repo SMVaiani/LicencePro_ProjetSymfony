@@ -27,9 +27,21 @@ body {
 	font-family: serif;
 	color: red;
 }
+input.input-mise {
+	width: 100px;
+}
+button.btn-placer {
+	background-color: rgb(167,225,7);
+	font-family: 'Arial', 'Open Sans', 'Roboto', sans-serif;
+	color: white;
+	font-weight: bold;
+	font-family: 
+}
 
-
-/*background detail	background: #f8f8f8;*/
+button.btn-placer:hover {
+	background-color: rgb(167,225,7);
+	opacity: 0.9;
+}
 
 /* le block conteneur */
 .marquee-rtl {
