@@ -3,15 +3,33 @@ body {
 	margin-top: 0%;
 }
 
-#img-enchere {
-	width: 250px;
+#img-logo {
+	color:white; 
+	background:#707070;
+	border-radius:50%;
+	border:2px solid #404040;
+	max-width:120px;
+	max-height: 120px;
 }
-#tab-corp {
-	background: #f8f8f8;
+
+.encheres {
+	margin-bottom: 25px;
+	text-align: center;
+	margin-top: 25px;
 }
-#tab-entier {
-	margin: auto;
+.titre-encheres {
+	font-family: Georgia, serif;
+	font-size: 1.5em;
 }
+.valeur-encheres {
+	font-style: italic;
+	font-size: 0.8em;
+	font-family: serif;
+	color: red;
+}
+
+
+/*background detail	background: #f8f8f8;*/
 
 /* le block conteneur */
 .marquee-rtl {

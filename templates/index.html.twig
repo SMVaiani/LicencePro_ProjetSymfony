@@ -8,10 +8,12 @@
 			<link href="css/index.css" rel="stylesheet">
 		{% endblock %}
     </head>
+	
     <body class="border-right border-left">
         {% block body %}
+		<header>
 		<nav class="navbar navbar-dark bg-dark">
-			<a href="/"><img src="logo.png" title="Accueil" alt="Tahiti" style="color:white; background:#707070;border-radius:50%;border:2px solid #404040;max-width:120px;max-height: 120px;"></a>
+			<a href="/"><img src="images/logo.png" title="Accueil" alt="Tahiti" id="img-logo"></a>
 		{% if app.user %}
 			<a href="{{ path('pack_jetons_index') }}" class="nav-link nav-item">ACHETER VOS JETONS</a>
 			<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a>
@@ -20,21 +22,27 @@
 			<a href="{{ path('app_register') }}" class="btn btn-success" role="button">S'INSCRIRE</a>
 		{% endif %}
 		</nav>
+		</header>
 		
 		<!-- le conteneur fenêtre -->
 		<div class="marquee-rtl">
 			<!-- le contenu défilant -->
 			<div>Enchères en cours</div>
 		</div>
-	<table id="tab-entier">
-        <tbody id="tab-corp">
-            <tr>
-                <td><img src="iphone.jpg" alt="iphone" id="img-enchere"></td>
-                <td><h4>Iphone 6</h4>Valeur: 800 € <input type="text" id="uname" name="name"><button>Placer une offre</button></td>
-            </tr>
-        </tbody>
-    </table>
+		
+		<section class="row">
+		{% for enchere in encheres %}
+            <div class="col-md-6 encheres">
+					<div>
+						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" width="140px" height="200px"><br>
+						<span class="valeur-encheres">Valeur: {{ enchere.produit.prix }} €</span>
+					</div>
+					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>
+					<input type="text" id="uname" name="name"><button>Placer une offre</button>
+			</div>
+		{% endfor %}
+		</section>
 	{% endblock %}
         {% block javascripts %}{% endblock %}
-    </body>
+	</body>
 </html>

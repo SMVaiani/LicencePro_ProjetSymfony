@@ -17,5 +17,15 @@ class MyController extends AbstractController
 		return $this->render('index.html.twig', [
 			'encheres' => $enchereRepository->findAll(),
 		]);
+	}	 
+	
+	/**
+	  * @Route("/utilisateur/placer", name="utilisateur_placer", methods={"GET","POST"})
+	  */
+	public function placerOffre():Response
+	{
+		$historiqueEncheres = new HistoriqueEncheres();
+		
+		
 	}
 }
