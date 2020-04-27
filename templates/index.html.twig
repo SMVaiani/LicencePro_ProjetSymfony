@@ -16,7 +16,10 @@
 			<a href="/"><img src="images/logo.png" title="Accueil" alt="Tahiti" id="img-logo"></a>
 		{% if app.user %}
 			<a href="{{ path('pack_jetons_index') }}" class="nav-link nav-item">ACHETER VOS JETONS</a>
-			<span><a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a><br><span id="pseudo-name"><img src="images/logo_pseudo.png" alt="Utilisateur" width="25px"> {{ app.user.pseudo }}</span></span>
+			<span>
+				<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a><br>
+				<span id="pseudo-name"><img src="images/logo_pseudo.png" alt="Utilisateur" width="25px"> {{ app.user.pseudo }}</span>
+			</span>
 		{% else %}
 			<a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">SE CONNECTER</a>
 			<a href="{{ path('app_register') }}" class="btn btn-success" role="button">S'INSCRIRE</a>
@@ -35,12 +38,12 @@
 		{% for enchere in encheres %}
             <div class="col-md-4 encheres">
 					<div>
-						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" width="150px" height="220px"><br>
+						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" width="200px" height="200px"><br>
 						<span class="valeur-encheres">Valeur: {{ enchere.produit.prix }} €</span>
 					</div>
 					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>
 					<form action="{{ path('utilisateur_placer') }}" method="POST">
-						<input class="input-mise" type="number" step="0.01" min="0.01" max="1000" name="mise">
+						<input class="input-mise" type="number" step="0.01" min="0.01" max="500" name="mise">
 						<button class="btn btn-light btn-placer" name="id_enchere" value="{{ enchere.id }}">Placer une offre</button>
 					</form>
 			</div>

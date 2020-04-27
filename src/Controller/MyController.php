@@ -29,14 +29,27 @@ class MyController extends AbstractController
 		{
 			$mise = $_POST['mise'];
 			$id_enchere = $_POST['id_enchere'];
-			$enchere = $enchereRepository->find($id_enchere);
-			$historiqueEncheres = new HistoriqueEncheres();
-			$historiqueEncheres->setEnchere($enchere);
-			$historiqueEncheres->setPrix($mise);
-			$this->getUser()->addHistoriqueEnchere($historiqueEncheres);
-			$entityManager = $this->getDoctrine()->getManager();
-			$entityManager->persist($historiqueEncheres);
-			$entityManager->flush();
+			$user = $this->getUser();
+			$achats = $user->getAchat();
+			$nbJetons = 0;
+			foreach($achats as $achat)
+			{
+				$packJetons = $achat->getPackjetons();
+				$nbJetons += $packJetons->getNbjetons();
+			}
+			
+			if($nbJetons > count($user->getHistoriqueEncheres()))
+			{
+				$enchere = $enchereRepository->find($id_enchere);
+				$historiqueEncheres = new HistoriqueEncheres();
+				$historiqueEncheres->setEnchere($enchere);
+				$historiqueEncheres->setPrix($mise);
+				$user->addHistoriqueEnchere($historiqueEncheres);
+				$entityManager = $this->getDoctrine()->getManager();
+				$entityManager->persist($historiqueEncheres);
+				$entityManager->flush();
+			}
+			
 		}
 		
 		return $this->redirectToRoute('index');
