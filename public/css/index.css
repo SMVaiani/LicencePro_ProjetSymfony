@@ -40,12 +40,12 @@ input.input-mise {
 button.btn-placer {
 	background-color: rgb(167,225,7);
 	font-family: 'Arial', 'Open Sans', 'Roboto', sans-serif;
-	color: white;
 	font-weight: bold; 
 }
 
 button.btn-placer:hover {
 	background-color: rgb(167,225,7);
+	color: white;
 	opacity: 0.9;
 }
 
