@@ -15,6 +15,24 @@ class MyController extends AbstractController
 	  */
 	public function index(EnchereRepository $enchereRepository):Response
 	{
+		if($this->getUser() != null)
+		{
+			$user = $this->getUser();
+			$achats = $user->getAchat();
+			$nbJetons = 0;
+			foreach($achats as $achat)
+			{
+				$packJetons = $achat->getPackjetons();
+				$nbJetons += $packJetons->getNbjetons();
+			}
+			
+			$nbJetons -= count($user->getHistoriqueEncheres());
+			return $this->render('index.html.twig', [
+			'encheres' => $enchereRepository->findAll(),
+			'nbJetons' => $nbJetons,
+		]);
+		}
+		
 		return $this->render('index.html.twig', [
 			'encheres' => $enchereRepository->findAll(),
 		]);
@@ -49,7 +67,13 @@ class MyController extends AbstractController
 				$entityManager->persist($historiqueEncheres);
 				$entityManager->flush();
 			}
+			else {
+				
+			}
 			
+		}
+		else {
+			return $this->redirectToRoute('app_login');
 		}
 		
 		return $this->redirectToRoute('index');

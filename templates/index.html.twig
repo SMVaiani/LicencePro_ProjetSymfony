@@ -9,13 +9,17 @@
 		{% endblock %}
     </head>
 	
-    <body class="border-right border-left">
         {% block body %}
+		<div class="border-right border-left" id="container">
 		<header>
 		<nav class="navbar navbar-dark bg-dark">
-			<a href="/"><img src="images/logo.png" title="Accueil" alt="Tahiti" id="img-logo"></a>
+			<a href="/"><img src="images/logo.png" title="Accueil" alt="Tahiti" class="img-logo"></a>
 		{% if app.user %}
 			<a href="{{ path('pack_jetons_index') }}" class="nav-link nav-item">ACHETER VOS JETONS</a>
+			<div class="contenant">
+				<img src="images/jeton.jpg" alt="jeton" class="img-logo">
+				<div class="texte_centrer">{{ nbJetons }}</div>
+			</div>
 			<span>
 				<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary" role="button">DECONNEXION</a><br>
 				<span id="pseudo-name"><img src="images/logo_pseudo.png" alt="Utilisateur" width="25px"> {{ app.user.pseudo }}</span>
@@ -30,7 +34,7 @@
 		<!-- le conteneur fenêtre -->
 		<div class="marquee-rtl">
 			<!-- le contenu défilant -->
-			<div>Enchères en cours : Offre du moments 1 pack de 3 jetons acheter UNE OFFERT</div>
+			<div>Enchères en cours : Offre du moments 1 pack de 3 jetons acheter PLUS DE CHANCE DE GAGNER</div>
 		</div>
 		
 		<section class="row">
@@ -43,14 +47,16 @@
 					</div>
 					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>
 					<form action="{{ path('utilisateur_placer') }}" method="POST">
-						<input class="input-mise" type="number" step="0.01" min="0.01" max="500" name="mise">
+						<input class="input-mise" type="number" required step="0.01" min="0.01" max="500" name="mise">
 						<button class="btn btn-light btn-placer" name="id_enchere" value="{{ enchere.id }}">Placer une offre</button>
 					</form>
 			</div>
 		{% endfor %}
 		
 		</section>
+		
+		<footer><h2>© 2020 Licence Pro ADMS</h2></footer>
+	</div>
 	{% endblock %}
         {% block javascripts %}{% endblock %}
-	</body>
 </html>

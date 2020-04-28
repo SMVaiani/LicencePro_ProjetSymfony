@@ -1,9 +1,9 @@
-body {
+#container {
 	margin: 8%;
 	margin-top: 0%;
+	margin-bottom: 0%;
 }
-
-#img-logo {
+.img-logo {
 	color:white; 
 	background:#707070;
 	border-radius:50%;
@@ -11,6 +11,21 @@ body {
 	max-width:120px;
 	max-height: 120px;
 }
+
+.contenant {
+  position: relative;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+.texte_centrer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #pseudo-name {
 	color: yellow;
 	opacity: 0.8;
@@ -74,4 +89,9 @@ button.btn-placer:hover {
   100% {
     transform: translate3d(-100%,0,0);  /* position finale à gauche */
   }
+}
+
+footer {
+	text-align: center;
+	background-color: #ddc477;
 }

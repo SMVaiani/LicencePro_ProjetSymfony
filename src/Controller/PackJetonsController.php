@@ -37,7 +37,7 @@ class PackJetonsController extends AbstractController
 			$achat = new Achat();
 			$packJeton = $packJetonsRepository->find($idJeton);
 			$packJeton->addAchat($achat);
-			$this->getUsers->addAchat($achat);
+			$this->getUser()->addAchat($achat);
 
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($achat);
