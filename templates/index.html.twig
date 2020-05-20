@@ -42,7 +42,7 @@
 		{% for enchere in encheres %}
             <div class="col-md-4 encheres">
 					<div>
-						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" width="200px" height="200px"><br>
+						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" height="180px"><br>
 						<span class="valeur-encheres">Valeur: {{ enchere.produit.prix }} €</span>
 					</div>
 					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>

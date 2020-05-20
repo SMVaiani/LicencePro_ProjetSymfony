@@ -67,10 +67,6 @@ class MyController extends AbstractController
 				$entityManager->persist($historiqueEncheres);
 				$entityManager->flush();
 			}
-			else {
-				
-			}
-			
 		}
 		else {
 			return $this->redirectToRoute('app_login');

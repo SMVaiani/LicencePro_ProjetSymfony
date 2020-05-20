@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Accès refusé{% endblock %}</title>
+    </head>
+	
+	{% block body %}
+		<h2>Vous n'avez pas les droits d'accès pour cette page</h2>
+		<a href="{{path('index')}}">Accueil</a>
+	{% endblock %}
+</html>

@@ -12,6 +12,11 @@
 	max-height: 120px;
 }
 
+a.nav-item:hover {
+	text-decoration: underline;
+	opacity: 0.7;
+}
+
 .contenant {
   position: relative;
   text-align: center;
