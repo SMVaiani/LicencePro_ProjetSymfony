@@ -44,6 +44,7 @@
 					<div>
 						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" height="180px"><br>
 						<span class="valeur-encheres">Valeur: {{ enchere.produit.prix }} €</span>
+						<span id="temps_restant{{ enchere.id }}"></span>
 					</div>
 					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>
 					<form action="{{ path('utilisateur_placer') }}" method="POST">
@@ -57,6 +58,44 @@
 		
 		<footer><h2>© 2020 Licence Pro ADMS</h2></footer>
 	</div>
+	
+	{% block javascripts %}
+	<script>
+		function dateDiff(date1, date2){
+			let diff = {}                           // Initialisation du retour
+			let tmp = date2 - date1;
+ 
+			tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+			diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+ 
+			tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+			diff.min = tmp % 60;                    // Extraction du nombre de minutes
+ 
+			tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+			diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+     
+			tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+			diff.day = tmp;
+     
+			return diff;
+		}
+		
+		var interval = setInterval(compteur, 1000);
+
+		function compteur() {
+			let date_actuelle = new Date();
+			let date_fin = new Date('{{ encheres[0].dateFin|date('Y-m-d H:i:s') }}');
+			diff = dateDiff(date_actuelle, date_fin);
+			
+			if (diff.day > 0 || diff.hour > 0 || diff.min > 0 || diff.sec > 0) {
+				document.getElementById('temps_restant').innerHTML = '{{ encheres[0].produit.descriptif }}' + ': ' + diff.day + 'j ' + diff.hour + 'h ' + diff.min + 'm ' + diff.sec + 's';
+			} else {
+				clearInterval(interval);
+				document.getElementById('temps_restant').innerHTML = 'Cette enchère est fermée';
+			}
+		}
+	</script>
 	{% endblock %}
-        {% block javascripts %}{% endblock %}
+	
+	{% endblock %}
 </html>
