@@ -19,6 +19,21 @@ class EnchereRepository extends ServiceEntityRepository
         parent::__construct($registry, Enchere::class);
     }
 
+	/**
+	 * @return la liste des enchères disponible qui ne sont pas encore passé
+	 */
+	public function findByEnchereAvailable()
+    {
+		date_default_timezone_set('Europe/Paris');
+		$actuelle_date_heure = new \DateTime('now');
+        return $this->createQueryBuilder('e')
+            ->andWhere(':actuelle_date_heure > e.date_debut AND :actuelle_date_heure < e.date_fin')
+			->setParameter('actuelle_date_heure', $actuelle_date_heure)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+	
     // /**
     //  * @return Enchere[] Returns an array of Enchere objects
     //  */

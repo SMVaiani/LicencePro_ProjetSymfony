@@ -11,6 +11,14 @@
 	max-width:120px;
 	max-height: 120px;
 }
+.img-jetons {
+	color:white; 
+	background:#707070;
+	border-radius:50%;
+	border:2px solid #404040;
+	max-width:120px;
+	max-height: 120px;
+}
 
 a.nav-item:hover {
 	text-decoration: underline;
@@ -19,7 +27,7 @@ a.nav-item:hover {
 
 .contenant {
   position: relative;
-  text-align: center;
+  text-align: right;
   color: black;
   font-weight: bold;
 }

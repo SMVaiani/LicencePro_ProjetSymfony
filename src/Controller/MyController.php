@@ -28,13 +28,13 @@ class MyController extends AbstractController
 			
 			$nbJetons -= count($user->getHistoriqueEncheres());
 			return $this->render('index.html.twig', [
-			'encheres' => $enchereRepository->findAll(),
+			'encheres' => $enchereRepository->findByEnchereAvailable(),
 			'nbJetons' => $nbJetons,
 		]);
 		}
 		
 		return $this->render('index.html.twig', [
-			'encheres' => $enchereRepository->findAll(),
+			'encheres' => $enchereRepository->findByEnchereAvailable(),
 		]);
 	}	 
 	
