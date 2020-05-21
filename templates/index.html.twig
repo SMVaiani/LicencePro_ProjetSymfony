@@ -42,9 +42,9 @@
 		{% for enchere in encheres %}
             <div class="col-md-4 encheres">
 					<div>
+						<p id="temps-restant"><span id="temps_restant{{ enchere.id }}"></span></p>
 						<img src="{{ asset(enchere.produit.image) }}" alt="{{ enchere.produit.descriptif }}" height="180px"><br>
 						<span class="valeur-encheres">Valeur: {{ enchere.produit.prix }} €</span>
-						<span id="temps_restant{{ enchere.id }}"></span>
 					</div>
 					<span class="titre-encheres">{{ enchere.produit.descriptif }}</span><br>
 					<form action="{{ path('utilisateur_placer') }}" method="POST">
@@ -80,18 +80,39 @@
 			return diff;
 		}
 		
-		var interval = setInterval(compteur, 1000);
-
-		function compteur() {
+		let lesEncheres = new Array({{encheres|length}});
+		let indice = 0;
+		{% for enchere in encheres %}
+			lesEncheres[indice] = new Array();
+			lesEncheres[indice].push("temps_restant{{ enchere.id }}"); //Créee les identifiants pour chaque enchère
+			lesEncheres[indice].push("{{ enchere.dateFin|date('Y-m-d H:i:s') }}"); // Ajoute la date de fin de chaque enchère
+			indice++;
+		{% endfor %}
+		
+		start(); // Déclenche le compte à rebours
+		function start() {
+			for(let i=0; i<lesEncheres.length; i++) {
+				lesEncheres[i].push(setInterval(function(){ compteur(i); }, 1000)); // On récupère la valeur de la minuterie définie pour 
+																					// pouvoir arrêter le compteur quand le temps est écoulé
+			}
+		}
+		
+		function finish(idEnchere) {
+			clearInterval(lesEncheres[idEnchere][2]); // Stop la minuterie
+			document.getElementById(lesEncheres[idEnchere][0]).innerHTML = '<span id="enchere-fermee">Cette enchère est fermée<span>';
+		}
+		
+		function compteur(idEnchere) {
 			let date_actuelle = new Date();
-			let date_fin = new Date('{{ encheres[0].dateFin|date('Y-m-d H:i:s') }}');
-			diff = dateDiff(date_actuelle, date_fin);
+			let date_fin = new Date(lesEncheres[idEnchere][1]);
+			let diff = dateDiff(date_actuelle, date_fin);
 			
-			if (diff.day > 0 || diff.hour > 0 || diff.min > 0 || diff.sec > 0) {
-				document.getElementById('temps_restant').innerHTML = '{{ encheres[0].produit.descriptif }}' + ': ' + diff.day + 'j ' + diff.hour + 'h ' + diff.min + 'm ' + diff.sec + 's';
-			} else {
-				clearInterval(interval);
-				document.getElementById('temps_restant').innerHTML = 'Cette enchère est fermée';
+			if(diff.sec < 0 ) finish(idEnchere);
+			else {
+				if(diff.day == 0)
+					document.getElementById(lesEncheres[idEnchere][0]).innerHTML = 'Temps restant ' + diff.hour + 'h ' + diff.min + 'm ' + diff.sec + 's';
+				else
+					document.getElementById(lesEncheres[idEnchere][0]).innerHTML = 'Temps restant ' + diff.day + 'j ' + diff.hour + 'h ' + diff.min + 'm ' + diff.sec + 's';
 			}
 		}
 	</script>

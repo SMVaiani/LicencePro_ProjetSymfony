@@ -52,6 +52,20 @@ a.nav-item:hover {
 	text-align: center;
 	margin-top: 25px;
 }
+p#temps-restant {
+	color: green;
+	font-weight: bold;
+	font-family: Verdana,sans-serif;
+	font-size: 9pt;
+	margin-bottom: 0px;
+}
+#enchere-fermee {
+	color: red;
+	font-weight: bold;
+	font-family: Verdana,sans-serif;
+	font-size: 9pt;
+	margin-bottom: 0px;
+}
 .titre-encheres {
 	font-family: Georgia, serif;
 	font-size: 1.5em;
